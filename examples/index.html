@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Lazy list example</title>
+	<meta charset="iso-8859-15">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- jQuery and jQuery mobile -->
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" type="text/css"/>
+	<script src="../jquery.mobile.lazylist.js" type="text/javascript"></script>
+</head>
+<body>
+    <div data-role="page">
+	<div data-role="header">
+		<h1>Lazy list example</h1>
+	</div><!-- /header -->
+        <div data-role="content">
+            <ul data-role="lazylist">
+                <li><a href="#">Item 1</a></li>
+                <li><a href="#">Item 2</a></li>
+                <li><a href="#">Item 3</a></li>
+                <li><a href="http://localhost/loadmore.jsp" class="lazylist-morebtn">More ...</a></li>
+            </ul>
+        </div><!-- content -->
+    </div>
+</body>
