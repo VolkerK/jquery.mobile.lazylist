@@ -7,16 +7,17 @@
  */
 (function($) {
     $.widget('mobile.lazylist', {
+    moreButton: undefined,
     options: {
         initSelector: ':jqmData(role=lazylist)'
     },
     _create: function() {
-        //console.log('_create');
+        console.log('_create');
         //TODO: Better selection
-        var moreBtn = $(".lazylist-morebtn");
+        moreButton = $(".lazylist-morebtn");
         //TODO: Handling when no more button was found
-        //console.log(moreBtn);
-        moreBtn.bind("click", $.proxy(function(event) {
+        //console.log(moreButton);
+        moreButton.bind("click", $.proxy(function(event) {
             //console.log(event);
             this._loadMore(event.target.href);
             //abbort and load with ajax
@@ -29,28 +30,47 @@
         var widget = this;
         console.log("Load more stuff with ajax form " + url);
         //console.log($(this));
-        //$(this).element.append('Hallo');
         $.ajax({
             url: url,
             dataType: 'html',
-            success: function(data, textStatus, jqXHR) {
+            success: function(html, textStatus, jqXHR) {
                 console.log('done loading');
-                console.log(data);
-                console.log(textStatus);
-                console.log(jqXHR);
+                //console.log(html);
+                //console.log(textStatus);
+                console.log(widget.element);
+                //console.log(jqXHR);
+                var content = $( html.trim() );
+                widget.element.append(content);
+                widget._removeMoreButton();
+                // Enhance the content if necessary
+                if ( typeof(content.attr('data-role')) !== 'undefined' ) {
+                    var pluginName = content.attr('data-role');
+                    content[pluginName]();
+                }
+                widget.element.listview('refresh');
+                //widget.element.trigger('create');
             },
             error: function(jqXHR, textStatus, errorThrown ) {
                 console.log('error loading');
-                console.log(jqXHR);
+                //console.log(jqXHR);
                 console.log(textStatus);
                 console.log(errorThrown);
             },
+            complete: function() {
+                console.log('ajax completed');
+            }
             //beforeSend: $.proxy(widget._displayLoadingState, this) // Display something while loading the content
         });
     },
     _displayLoadingState: function() {
         var loading = $('<span>').addClass('lazycontent-loading');
         this.element.html(loading);
+    },
+    _removeMoreButton: function() {
+        console.log('removing more button');
+        console.log(moreButton);
+        //TODO: more button genau finden um ihn komplett zu entfernen (samt evtl. Elternelemente)
+        moreButton.parent().remove();
     }
     });
 
