@@ -26,9 +26,31 @@
 	this.element.listview();
     },
     _loadMore: function(url) {
+        var widget = this;
         console.log("Load more stuff with ajax form " + url);
-        console.log($(this));
+        //console.log($(this));
         //$(this).element.append('Hallo');
+        $.ajax({
+            url: url,
+            dataType: 'html',
+            success: function(data, textStatus, jqXHR) {
+                console.log('done loading');
+                console.log(data);
+                console.log(textStatus);
+                console.log(jqXHR);
+            },
+            error: function(jqXHR, textStatus, errorThrown ) {
+                console.log('error loading');
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            },
+            //beforeSend: $.proxy(widget._displayLoadingState, this) // Display something while loading the content
+        });
+    },
+    _displayLoadingState: function() {
+        var loading = $('<span>').addClass('lazycontent-loading');
+        this.element.html(loading);
     }
     });
 
