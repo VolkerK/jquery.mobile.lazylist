@@ -4,6 +4,11 @@
  * Copyright (c) 2013, Volker Krebs
  * Dual licensed under the MIT and GPL Version 2 licenses.
  * 
+ * This widget applies listview and loades content from an
+ * element with lazylist-morebtn class.
+ * The content that is loaded needs to contain a new lazylist-morebtn element
+ * for the next content that is loaded. So you need to have control over
+ * the content that is loaded.
  */
 (function($) {
     $.widget('mobile.lazylist', {
