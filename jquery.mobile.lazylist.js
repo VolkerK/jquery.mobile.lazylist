@@ -58,11 +58,12 @@
     },
     _enableLoadingState: function() {
         console.log("loading");
-        $.mobile.loading( "show");
+        this.loading = $('<span>').addClass('lazycontent-loading');
+        this.element.append(this.loading);
     },
     _disableLoadingState: function() {
         console.log("finished loading");
-        $.mobile.loading( "hide");
+        this.loading.remove();
     },
     _removeMoreButton: function() {
         console.log('removing more button');
