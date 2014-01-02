@@ -24,7 +24,6 @@
     _loadMore: function(url) {
         var widget = this;
         console.log("Load more stuff with ajax form " + url);
-        //console.log($(this));
         $.ajax({
             url: url,
             dataType: 'html',
@@ -46,11 +45,9 @@
                 //apply this widget (more button and stuff)
                 widget.apply();
             },
-            error: function(jqXHR, textStatus, errorThrown ) {
-                console.log('error loading');
-                //console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
+            error: function(jqXHR) {
+                var message = "Sorry, your request could not be fullfilled.\nStatus Text:" + jqXHR.statusText + "\nStatus Code: " + jqXHR.status;
+                alert( message );
             },
             beforeSend: $.proxy(widget._enableLoadingState, this),
             complete: $.proxy(widget._disableLoadingState, this)
