@@ -53,15 +53,18 @@
                 console.log(textStatus);
                 console.log(errorThrown);
             },
-            complete: function() {
-                console.log('ajax completed');
-            }
-            //beforeSend: $.proxy(widget._displayLoadingState, this) // Display something while loading the content
+            beforeSend: $.proxy(widget._enableLoadingState, this),
+            complete: $.proxy(widget._disableLoadingState, this)
         });
     },
-    _displayLoadingState: function() {
+    _enableLoadingState: function() {
+        console.log("loading");
         var loading = $('<span>').addClass('lazycontent-loading');
         this.element.html(loading);
+    },
+    _disableLoadingState: function() {
+        console.log("finished loading");
+        $('span.lazycontent-loading').remove();
     },
     _removeMoreButton: function() {
         console.log('removing more button');
