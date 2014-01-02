@@ -67,15 +67,12 @@
     },
     _removeMoreButton: function() {
         console.log('removing more button');
-        //console.log(moreButton);
-        //TODO: more button genau finden um ihn komplett zu entfernen (samt evtl. Elternelemente)
         this.moreButton.parent().remove();
     },
     apply: function() {
         console.log('apply');
         //Store morebutton as instance varaiable
         this.moreButton = this.element.find(".lazylist-morebtn");
-        //console.log(moreButton);
         if (this.moreButton.length >= 1) {
             //no more button, so nothintg to bind
             this.moreButton.bind("click", $.proxy(function(event) {

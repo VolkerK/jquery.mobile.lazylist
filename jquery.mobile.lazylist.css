@@ -1,0 +1,6 @@
+.lazycontent-loading {
+	display: block;
+	width: 30px;
+	height: 30px;
+	background: transparent url(images/lazylist-loader.gif) no-repeat;
+}
