@@ -12,7 +12,6 @@
  */
 (function($) {
     $.widget('mobile.lazylist', {
-    moreButton: undefined,
     options: {
         initSelector: ':jqmData(role=lazylist)'
     },
@@ -69,20 +68,22 @@
         console.log('removing more button');
         //console.log(moreButton);
         //TODO: more button genau finden um ihn komplett zu entfernen (samt evtl. Elternelemente)
-        moreButton.parent().remove();
+        this.moreButton.parent().remove();
     },
     apply: function() {
         console.log('apply');
-        //TODO: Better selection
-        moreButton = $(".lazylist-morebtn");
-        //TODO: Handling when no more button was found
+        //Store morebutton as instance varaiable
+        this.moreButton = this.element.find(".lazylist-morebtn");
         //console.log(moreButton);
-        moreButton.bind("click", $.proxy(function(event) {
-            //console.log(event);
-            this._loadMore(event.target.href);
-            //abbort and load with ajax
-            return false;
-        }, this));
+        if (this.moreButton.length >= 1) {
+            //no more button, so nothintg to bind
+            this.moreButton.bind("click", $.proxy(function(event) {
+                //console.log(event);
+                this._loadMore(event.target.href);
+                //abbort and load with ajax
+                return false;
+            }, this));
+        }
     }
     });
     //auto self-init widgets
