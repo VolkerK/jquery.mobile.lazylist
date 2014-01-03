@@ -30,15 +30,12 @@
         $.ajax({
             url: url,
             dataType: 'html',
-            success: function(html, textStatus, jqXHR) {
+            success: function(html) {
                 console.log('done loading');
-                //console.log(html);
-                //console.log(textStatus);
-                //console.log(jqXHR);
                 widget._removeMoreButton();
                 var content = $( html.trim() );
                 widget.element.append(content);
-                // Enhance the content if necessary
+                // Enhance the content
                 if ( typeof(content.attr('data-role')) !== 'undefined' ) {
                     var pluginName = content.attr('data-role');
                     content[pluginName]();
@@ -70,7 +67,7 @@
         this.moreButton.parent().remove();
     },
     apply: function() {
-        console.log('apply ');
+        console.log('apply');
         //Store morebutton as instance varaiable
         this.moreButton = this.element.find(".lazylist-morebtn");
         console.log('Found ' + this.moreButton.length + ' more buttons');
@@ -87,7 +84,6 @@
     });
     //auto self-init widgets
     $(document).bind('pagecreate', function(event) {
-        console.log('pagecreate fired');
 	$($.mobile.lazylist.prototype.options.initSelector, event.target).lazylist();
     });
 }(jQuery));
