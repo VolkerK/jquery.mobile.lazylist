@@ -13,7 +13,6 @@
 (function($) {
     $.widget('mobile.lazylist', {
     //instance variables
-    applied: undefined,
     loading: undefined,
     moreButton: undefined,
     options: {
@@ -71,11 +70,7 @@
         this.moreButton.parent().remove();
     },
     apply: function() {
-        console.log('apply ' + this.applied);
-        if (this.applied) {
-            console.log('already applied for this intsance');
-            return;
-        }
+        console.log('apply ');
         //Store morebutton as instance varaiable
         this.moreButton = this.element.find(".lazylist-morebtn");
         console.log('Found ' + this.moreButton.length + ' more buttons');
@@ -88,7 +83,6 @@
                 return false;
             }, this));
         }
-        this.applied = true;
     }
     });
     //auto self-init widgets
