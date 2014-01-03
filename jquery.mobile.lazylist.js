@@ -12,14 +12,18 @@
  */
 (function($) {
     $.widget('mobile.lazylist', {
+    //instance variables
+    applied: undefined,
+    loading: undefined,
+    moreButton: undefined,
     options: {
         initSelector: ':jqmData(role=lazylist)'
     },
     _create: function() {
-        console.log('_create');
+        console.log('_create called');
         this.apply();
         //apply listview plugin
-	this.element.listview();
+        this.element.listview();
     },
     _loadMore: function(url) {
         var widget = this;
@@ -32,9 +36,9 @@
                 //console.log(html);
                 //console.log(textStatus);
                 //console.log(jqXHR);
+                widget._removeMoreButton();
                 var content = $( html.trim() );
                 widget.element.append(content);
-                widget._removeMoreButton();
                 // Enhance the content if necessary
                 if ( typeof(content.attr('data-role')) !== 'undefined' ) {
                     var pluginName = content.attr('data-role');
@@ -67,9 +71,14 @@
         this.moreButton.parent().remove();
     },
     apply: function() {
-        console.log('apply');
+        console.log('apply ' + this.applied);
+        if (this.applied) {
+            console.log('already applied for this intsance');
+            return;
+        }
         //Store morebutton as instance varaiable
         this.moreButton = this.element.find(".lazylist-morebtn");
+        console.log('Found ' + this.moreButton.length + ' more buttons');
         if (this.moreButton.length >= 1) {
             //no more button, so nothintg to bind
             this.moreButton.bind("click", $.proxy(function(event) {
@@ -79,10 +88,12 @@
                 return false;
             }, this));
         }
+        this.applied = true;
     }
     });
     //auto self-init widgets
     $(document).bind('pagecreate', function(event) {
+        console.log('pagecreate fired');
 	$($.mobile.lazylist.prototype.options.initSelector, event.target).lazylist();
     });
 }(jQuery));
