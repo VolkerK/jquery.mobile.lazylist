@@ -19,19 +19,19 @@
         initSelector: ':jqmData(role=lazylist)'
     },
     _create: function() {
-        console.log('_create called');
+        //console.log('_create called');
         this.apply();
         //apply listview plugin
         this.element.listview();
     },
     _loadMore: function(url) {
         var widget = this;
-        console.log("Load more stuff with ajax form " + url);
+        //console.log("Load more stuff with ajax form " + url);
         $.ajax({
             url: url,
             dataType: 'html',
             success: function(html) {
-                console.log('done loading');
+                //console.log('done loading');
                 widget._removeMoreButton();
                 var content = $( html.trim() );
                 widget.element.append(content);
@@ -54,23 +54,23 @@
         });
     },
     _enableLoadingState: function() {
-        console.log("loading");
+        //console.log("loading");
         this.loading = $('<span>').addClass('lazycontent-loading');
         this.element.append(this.loading);
     },
     _disableLoadingState: function() {
-        console.log("finished loading");
+        //console.log("finished loading");
         this.loading.remove();
     },
     _removeMoreButton: function() {
-        console.log('removing more button');
+        //console.log('removing more button');
         this.moreButton.parent().remove();
     },
     apply: function() {
-        console.log('apply');
+        //console.log('apply');
         //Store morebutton as instance varaiable
         this.moreButton = this.element.find(".lazylist-morebtn");
-        console.log('Found ' + this.moreButton.length + ' more buttons');
+        //console.log('Found ' + this.moreButton.length + ' more buttons');
         if (this.moreButton.length >= 1) {
             //no more button, so nothintg to bind
             this.moreButton.bind("click", $.proxy(function(event) {
