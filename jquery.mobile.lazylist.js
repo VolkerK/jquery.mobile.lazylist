@@ -36,11 +36,19 @@
                 widget._removeMoreButton();
                 var content = $( html.trim() );
                 widget.element.append(content);
-                // Enhance the content
+                // Enhance the content if necessary
                 if ( typeof(content.attr('data-role')) !== 'undefined' ) {
-                    var pluginName = content.attr('data-role');
-                    content[pluginName]();
+                        var pluginName = content.attr('data-role');
+                        content[pluginName]();
                 }
+                // Enhance the children of content if necessary
+                $.each(content.find('[data-role]'), function() {
+                        var item = $(this)
+                          , pluginName = item.attr('data-role');
+                        if ( typeof item[pluginName] === 'function' ) { 
+                                item[pluginName]();
+                        }
+                });
                 //refresh needed for the just loaded content
                 widget.element.listview('refresh');
                 //apply this widget (more button and stuff)
