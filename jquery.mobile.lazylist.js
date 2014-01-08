@@ -8,7 +8,8 @@
  * element with lazylist-morebtn class.
  * The content that is loaded needs to contain a new lazylist-morebtn element
  * for the next content that is loaded. So you need to have control over
- * the content that is loaded.
+ * the content that is loaded. The url of the loaded content is specified
+ * with data-lazylist-moreurl.
  */
 (function($) {
     $.widget('mobile.lazylist', {
@@ -69,15 +70,14 @@
     apply: function() {
         //console.log('apply');
         //Store morebutton as instance varaiable
-        this.moreButton = this.element.find(".lazylist-morebtn");
+        this.moreButton = this.element.find("div.lazylist-morebtn");
         //console.log('Found ' + this.moreButton.length + ' more buttons');
         if (this.moreButton.length >= 1) {
             //no more button, so nothintg to bind
             this.moreButton.bind("click", $.proxy(function(event) {
-                //console.log(event);
-                this._loadMore(event.target.href);
-                //abbort and load with ajax
-                return false;
+                var moreUrl = $(event.target).attr("data-lazylist-moreurl");
+                //console.log(moreUrl);
+                this._loadMore(moreUrl);
             }, this));
         }
     }

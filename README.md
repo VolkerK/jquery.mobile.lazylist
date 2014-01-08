@@ -19,10 +19,10 @@ You can then easily add the data-role "lazylist" to any ul Element and make it a
   <li>Item 5</li>
   <li>Item 6</li>
   <li>Item 7</li>
-  <li><a href="load_more_from_this_url.html" class="lazylist-morebtn">More ...</a></li>
+  <li><div class="lazylist-morebtn" data-lazylist-moreurl="load_more_from_this_url.html">More ...</div></li>
 </ul>
 ```
 When an anchor element with class *lazylist-morebtn* is present, it will load the content
-form the specified url and append it to the list. So the url must return a html snippet with
-*<li>* elements. If this snippet contains another *lazylist-morebtn* you can load even more
-*<li>* elements.
+form the url specified by *data-lazylist-moreurl* and append it to the list. So the url must
+return a html snippet with *<li>* elements. If this snippet contains another
+*lazylist-morebtn* you can load even more *<li>* elements.
