@@ -4,7 +4,7 @@
  * Copyright (c) 2013, Volker Krebs
  * Dual licensed under the MIT and GPL Version 2 licenses.
  * 
- * This widget applies listview and loades content from an
+ * This widget applies listview and loads content from an
  * element with lazylist-morebtn class.
  * The content that is loaded needs to contain a new lazylist-morebtn element
  * for the next content that is loaded. So you need to have control over
@@ -80,7 +80,10 @@
             this.moreButton.bind("click", $.proxy(function(event) {
                 var moreUrl = $(event.target).attr("data-lazylist-moreurl");
                 //console.log(moreUrl);
-                this._loadMore(moreUrl);
+                //TODO: Try to find a more url in parent elements
+                if(typeof moreUrl !== 'undefined') {
+                    this._loadMore(moreUrl);
+                }
             }, this));
         }
     }
