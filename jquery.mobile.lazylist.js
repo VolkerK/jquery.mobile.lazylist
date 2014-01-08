@@ -79,8 +79,15 @@
             //no more button, so nothintg to bind
             this.moreButton.bind("click", $.proxy(function(event) {
                 var moreUrl = $(event.target).attr("data-lazylist-moreurl");
+                if(typeof moreUrl === 'undefined') {
+                    //if moreUrl still is undefined we try to find it in an parent object
+                    //this is necessary when clicking the count element for example
+                    $.each($(event.target).parentsUntil(this.element, "[data-lazylist-moreurl]"), function(index, value) {
+                        //find all parents until the widgets ends, which have a data-lazylist-moreurl attribute
+                        moreUrl = $(value).attr("data-lazylist-moreurl");
+                    });
+                }
                 //console.log(moreUrl);
-                //TODO: Try to find a more url in parent elements
                 if(typeof moreUrl !== 'undefined') {
                     this._loadMore(moreUrl);
                 }
