@@ -4,3 +4,9 @@
 	height: 30px;
 	background: transparent url(images/lazylist-loader.gif) no-repeat;
 }
+.lazylist-morebtn {
+    background: url("images/arrow-down.png") no-repeat scroll center 20px rgba(0, 0, 0, 0);
+    padding: 0 0 40px;
+    text-align: center;
+    font-size: 12px;
+}

@@ -81,7 +81,7 @@
         this.moreButton = this.element.find(".lazylist-morebtn");
         //enhance it like jqm would do it
         //TODO: Make this classes a property
-        this.moreButton.parent().addClass('ui-btn ui-btn-icon-right ui-icon-carat-r');
+        // this.moreButton.parent().addClass('ui-btn ui-btn-icon-right ui-icon-carat-r');
         //console.log('Found ' + this.moreButton.length + ' more buttons');
         if (this.moreButton.length >= 1) {
             //no more button, so nothintg to bind
