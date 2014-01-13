@@ -5,8 +5,18 @@
 	background: transparent url(images/lazylist-loader.gif) no-repeat;
 }
 .lazylist-morebtn {
-    background: url("images/arrow-down.png") no-repeat scroll center 20px rgba(0, 0, 0, 0);
+    background: url("images/lazylist-arrow-down.png") no-repeat scroll center 20px rgba(0, 0, 0, 0);
     padding: 0 0 40px;
     text-align: center;
     font-size: 12px;
+    -moz-animation: slipIn 1s 1 ease-out;
+    -webkit-animation: slipIn 1s 1 ease-out;
+}
+ @-moz-keyframes slipIn {
+	0% { -moz-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
+	80% { -moz-transform: rotate(0deg) scale(0.813) skew(1deg) translate(0px); }
+}
+ @-webkit-keyframes slipIn {
+	0% { -webkit-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
+	80% { -webkit-transform: rotate(0deg) scale(0.813) skew(1deg) translate(0px); }
 }
