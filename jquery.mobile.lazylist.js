@@ -14,7 +14,6 @@
 (function($) {
     $.widget('mobile.lazylist', {
     //instance variables
-    loading: undefined,
     moreButton: undefined,
     options: {
         initSelector: ':jqmData(role=lazylist)'
@@ -58,21 +57,13 @@
                 var message = "Sorry, your request could not be fullfilled.\nStatus Text:" + jqXHR.statusText + "\nStatus Code: " + jqXHR.status;
                 alert( message );
             },
-            beforeSend: $.proxy(widget._enableLoadingState, this),
-            complete: $.proxy(widget._disableLoadingState, this)
+            beforeSend: $.proxy(widget._enableLoadingState, this)
         });
     },
     _enableLoadingState: function() {
-        //console.log("loading");
-        this.loading = $('<span>').addClass('lazycontent-loading');
-        this.element.append(this.loading);
-    },
-    _disableLoadingState: function() {
-        //console.log("finished loading");
-        this.loading.remove();
+    	this.moreButton.addClass('loading');
     },
     _removeMoreButton: function() {
-        //console.log('removing more button');
         this.moreButton.parent().remove();
     },
     apply: function() {

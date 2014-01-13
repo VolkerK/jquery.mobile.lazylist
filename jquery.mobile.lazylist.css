@@ -1,9 +1,3 @@
-.lazycontent-loading {
-	display: block;
-	width: 30px;
-	height: 30px;
-	background: transparent url(images/lazylist-loader.gif) no-repeat;
-}
 .lazylist-morebtn {
 	background: url("images/lazylist-arrow-down.svg") no-repeat scroll center 20px rgba(0, 0, 0, 0);
 	padding: 0 0 40px;
@@ -11,6 +5,9 @@
 	font-size: 12px;
 	-moz-animation: slipIn 1s 1 ease-out;
 	-webkit-animation: slipIn 1s 1 ease-out;
+}
+.lazylist-morebtn.loading {
+	background: url("images/lazylist-loader.gif") no-repeat scroll center 20px rgba(0, 0, 0, 0);
 }
 @-moz-keyframes slipIn {
 	0% { -moz-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
